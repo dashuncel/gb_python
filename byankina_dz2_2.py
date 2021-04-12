@@ -16,19 +16,24 @@ while True:
     elem = my_list[idx]
     try:
         num = int(elem)
-        #print('{0}: число. Преобразуем.'.format(elem))
-        my_list[idx] = '{0:02}'.format(num)
+        if elem.startswith('+') or elem.startswith('-'):
+           my_list[idx] = elem[0] + '{0:02}'.format(num)
+        else:
+           my_list[idx] = '{0:02}'.format(num)
         my_list.insert(idx, '"')
         my_list.insert(idx + 2, '"')
         idx += 3
     except ValueError:
-        #print('{0}: не число. Пропускаем.'.format(elem))
         idx += 1
     if idx >= len(my_list):
         break
 
 my_str = ' '.join(my_list)
 print(my_str)
+
+for sym in enumerate(range(len(my_str))):
+    print(sym)
+
 #my_str = re.sub('"\s\d+', r'\1', my_str)
 #my_str = re.sub('\d\s+"', r'', my_str)
 #print(my_str)
