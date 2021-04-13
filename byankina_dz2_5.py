@@ -12,6 +12,10 @@ D. Вывести цены пяти самых дорогих товаров. С
 возрастанию, написав минимум кода?
 '''
 import random
+import copy
+
+def transformStr(num):
+    return '{0:02} руб {1:02} коп.'.format(int(num), int(num * 100 % 100))
 
 #генерация
 i = 0
@@ -23,16 +27,18 @@ while i < 25:
 print('Сгенерирован список: {}'.format(price_list))
 
 #A.
-print(' ,'.join(map(lambda x: str('{} руб {} коп.'.format(str(x).split('.'))), price_list)))
+print('С копейками: ' + ', '.join(map(transformStr, price_list)))
 
 #B.
 print('Отсортированный список: {}'.format(sorted(price_list)))
 print('Исходный список: {}'.format(price_list))
 
 #C.
-#new_price = price_list.sort(reverse=True)
-#print('Новый отсортированный по убыванию список: {}'.format(new_price))
+new_price = copy.deepcopy(price_list)
+new_price.sort(reverse=True)
+print(new_price)
 
 #D.
+print(new_price[0:5])
 
 
