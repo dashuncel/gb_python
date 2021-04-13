@@ -4,6 +4,20 @@ nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
 adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
 adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
         Например:
->>> get_jokes(2)
+get_jokes(2)
 ["лес завтра зеленый", "город вчера веселый"]
 '''
+
+import random
+
+def get_jokes(num):
+
+    nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
+    adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
+    adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
+    jokes = []
+    for i in range(num):
+        jokes.append('{0} {1} {2}'.format(random.choice(nouns), random.choice(adverbs), random.choice(adjectives)))
+    return jokes
+
+print(get_jokes(10))
