@@ -18,14 +18,22 @@ ValueError: wrong val -5
 Примечание: сможете ли вы замаскировать работу декоратора?
 '''
 
-def val_checker(func):
-   def inner_checker(*args, **kwargs):
-      return func(*args)
+from functools import wraps
 
+def val_checker(check_func):
+   def inner_checker(func):
+      @wraps(func)
+      def wrapped(num):
+         if check_func(num):
+            return func(num)
+         else:
+            raise ValueError(num)
+      return wrapped
+   return inner_checker
 
 @val_checker(lambda x: x > 0)
 def calc_cube(x):
    return x ** 3
 
-a = calc_cube(5)
-a = calc_cube(-5)
+print(calc_cube(5))
+print(calc_cube(-5))
